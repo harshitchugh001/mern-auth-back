@@ -53,10 +53,10 @@ exports.signup = (req, res) => {
             subject: `Account activation link`,
             html: `
                 <h1>Please use the following link to activate your account</h1>
-                <p>${process.env.CLIENT_URL}/auth/activates/${token}</p>
+                <p>https://warm-griffin-0653de.netlify.app/auth/activates/${token}</p>
                 <hr />
                 <p>This email may contain sensetive information</p>
-                <p>${process.env.CLIENT_URL}</p>
+                <p>https://warm-griffin-0653de.netlify.app/</p>
             `
         };
 
