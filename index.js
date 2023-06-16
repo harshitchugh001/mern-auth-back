@@ -35,10 +35,16 @@ app.get('/', (req, res) => {
 // app middlewares
 app.use(morgan('dev'));
 app.use(bodyParser.json());
-app.use(cors()); // allows all origins
+// app.use(cors()); // allows all origins
 // if ((process.env.NODE_ENV = 'development')) {
 //     app.use(cors({ origin: `http://localhost:3000` }));
 // }
+const corsOptions = {
+  origin: 'https://mern-auth-back.vercel.app/api/google-login', 
+  optionsSuccessStatus: 200 
+};
+
+app.use(cors(corsOptions));
 
 // middleware
 app.use('/api', authRoutes);
