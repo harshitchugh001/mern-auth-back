@@ -8,21 +8,13 @@ require('dotenv').config();
 const app = express();
 
 // connect to db
-mongoose.set('strictQuery', true);
-mongoose
-    .connect(process.env.MONGO_URI, { 
-        useNewUrlParser: true,
-        useFindAndModify: false,
-        useUnifiedTopology: true,
-        useCreateIndex: true
-     })
-    .then(() => console.log("DB Connected"));
 
-
-
-mongoose.connection.on("error", err => {
-    console.log(`DB connection error: ${err.message}`);
-});
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log('DB Connected'))
+.catch(err => console.error(`DB connection error: ${err.message}`));
 
 // import routes
 const authRoutes = require('./routes/auth');
