@@ -8,6 +8,7 @@ require('dotenv').config();
 const app = express();
 
 // Connect to MongoDB
+mongoose.set('strictQuery', true);
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -20,16 +21,12 @@ const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 
 // Enable CORS for a specific origin or for all origins
-const corsOptions = {
-  origin: 'https://deluxe-hamster-e6f015.netlify.app', // specific origin
-  // origin: '*', // allow all origins
-  optionsSuccessStatus: 200,
-};
-app.use(cors(corsOptions));
+
 
 // App middlewares
 app.use(morgan('dev'));
 app.use(bodyParser.json());
+app.use(cors());
 
 app.get('/', (req, res) => {
     res.send('Hello from Node API');
